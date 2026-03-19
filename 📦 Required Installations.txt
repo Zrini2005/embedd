@@ -1,0 +1,108 @@
+📦 Required Installations
+
+Run these commands:
+
+sudo apt update
+sudo apt install python3-pip python3-dev libgpiod2
+
+pip3 install RPLCD
+pip3 install RPi.GPIO
+pip3 install Adafruit_DHT
+pip3 install adafruit-circuitpython-dht
+pip3 install adafruit-circuitpython-bmp280
+pip3 install pyfingerprint
+📚 What each library is for
+Library	Used For
+RPLCD	16×2 LCD display
+RPi.GPIO	GPIO control
+Adafruit_DHT	DHT11/DHT22 (old method)
+adafruit-circuitpython-dht	DHT22 (new method)
+adafruit-circuitpython-bmp280	Pressure/temperature sensor (BMP280)
+pyfingerprint	R305 fingerprint sensor
+board	Required for CircuitPython libraries
+⚠️ Important (very common issue)
+
+For fingerprint sensor (pyfingerprint):
+
+sudo apt install python3-serial
+pip3 install pyserial
+✅ Final One-Line Install (shortcut)
+
+If you want everything at once:
+
+pip3 install RPLCD RPi.GPIO Adafruit_DHT adafruit-circuitpython-dht adafruit-circuitpython-bmp280 pyfingerprint pyserial
+🧠 Extra Tip
+
+After installing, reboot once:
+
+sudo reboot
+
+If you want, I can also:
+
+Check your ZIP and tell which experiment uses which library
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+⚙️ Open Configuration
+sudo raspi-config
+
+Go to:
+
+Interface Options
+✅ Enable These (Important)
+1️⃣ I2C → Enable
+
+Needed for:
+
+BMP280 (pressure sensor)
+
+I2C LCD (if used)
+
+Interface Options → I2C → Enable
+2️⃣ Serial Port → Enable (but disable shell)
+
+Needed for:
+
+Fingerprint sensor (R305)
+
+Steps:
+
+Interface Options → Serial Port
+→ Login shell over serial? → NO
+→ Serial port hardware enabled? → YES
+3️⃣ SPI → Enable (optional)
+
+Only needed if:
+
+Any SPI sensors/modules are used
+
+Interface Options → SPI → Enable
+❌ NOT Needed
+
+GPIO → already enabled by default
+
+DHT22 → no config required (just GPIO)
+
+🔁 After changes
+sudo reboot
+⚡ Quick Summary
+I2C     → YES
+Serial  → YES (shell NO)
+SPI     → Optional
+
+Or give a minimal install (only required ones for your current exp) so you don’t install unnecessary stuff
